@@ -1,0 +1,66 @@
+#include <stdio.h> 
+ 
+enum states { q0, q1, qf, qd }; 
+ 
+int main() { 
+    char input[20]; 
+    enum states curr_state = q0; 
+    int i = 0; 
+ 
+    printf("\nEnter a binary string\t"); 
+    gets(input);  
+ 
+ 
+    char ch = input[i]; 
+    while (ch != '\0') { 
+        switch (curr_state) { 
+            case q0: 
+                if (ch == '0') 
+                    curr_state = q1; 
+                else 
+                    curr_state = qd; 
+                break; 
+ 
+            case q1: 
+                if (ch == '1') 
+                    curr_state = qf; 
+                else 
+                    curr_state = qd; 
+                break; 
+ 
+            case qf: 
+                if (ch == '0' || ch == '1') 
+                    curr_state = qf; 
+                break; 
+ 
+            case qd: 
+                if (ch == '0' || ch == '1') 
+                    curr_state = qd; 
+                break; 
+        } 
+        ch = input[++i]; 
+    } 
+ 
+    if (curr_state == qf) 
+        printf("\nThe string %s is accepted.", input); 
+    else 
+        printf("\nThe string %s is not accepted.", input); 
+ 
+    printf("\n\n Name: Kopila Devkota\n Roll No:18 \n Lab No: 3(i)"); 
+ 
+    return 0; 
+}  
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+  
